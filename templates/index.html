@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title> Voice Assistant</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      background: #eaeef3;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      background: #3267d6;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    #chat {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .message {
+      padding: 0.8rem 1rem;
+      border-radius: 1.2rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .user {
+      background: #d2f8cb;
+      align-self: flex-start;
+      max-width: 50%;
+      text-align: left;
+    }
+
+    .bot {
+      background: #ffffff;
+      align-self: flex-end;
+      max-width: 50%;
+      text-align: left;
+      border: 1px solid #d8d8d8;
+    }
+
+    #controls {
+      padding: 1rem;
+      background: #fff;
+      text-align: center;
+      border-top: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    button {
+      padding: 0.6rem 1.4rem;
+      border: none;
+      border-radius: 2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      background: #4a90e2;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #3a7cd1;
+    }
+
+    button.stop {
+      background: #e24a4a;
+    }
+
+    button.stop:hover {
+      background: #c93e3e;
+    }
+  </style>
+</head>
+<body>
+  <header>🎙️ Voice Chat Assistant</header>
+
+  <div id="chat"></div>
+
+  <div id="controls">
+    <button id="voiceBtn">Start Voice</button>
+    <button id="resetBtn">Reset Chat</button>
+  </div>
+
+  <audio id="audioPlayer" hidden></audio>
+
+  <script>
+    const chat = document.getElementById("chat");
+    const btn = document.getElementById("voiceBtn");
+    const player = document.getElementById("audioPlayer");
+
+    let active = false;
+    let abortController = null;
+
+    btn.onclick = () => {
+      if (active) {
+        stopConversation();
+      } else {
+        startConversation();
+      }
+    };
+
+    document.getElementById("resetBtn").onclick = async () => {
+      const confirmed = confirm("Do you want to reset the chat history?");
+      if (confirmed) {
+        await fetch("/reset_chat", { method: "POST" });
+        chat.innerHTML = "";
+        addMsg("bot", "Chat history has been reset.");
+      }
+    };
+
+    async function startConversation() {
+       active = true;
+       btn.textContent = "Stop Voice";
+       btn.classList.add("stop");
+
+      // 🆕 Fetch greeting
+      try {
+        const res = await fetch("/greeting");
+        const data = await res.json();
+        addMsg("bot", data.reply);
+
+      if (data.audio_url) {
+        player.src = `${data.audio_url}?t=${Date.now()}`;
+        player.hidden = false;
+        await new Promise((resolve) => {
+          player.onended = resolve;
+          player.onerror = resolve;
+          player.play().catch(resolve);
+        });
+      }
+      } catch (err) {
+        console.error("Greeting error:", err);
+        addMsg("bot", "Welcome! (Could not load greeting audio.)");
+      }
+
+      // Continue into main conversation loop
+      loop();
+   }
+
+
+    function stopConversation() {
+      active = false;
+      btn.textContent = "Start Voice";
+      btn.classList.remove("stop");
+
+      if (abortController) abortController.abort();
+
+      player.pause();
+      player.src = "";
+      player.hidden = true;
+
+      addMsg("bot", "Conversation stopped.");
+    }
+
+    async function loop() {
+      if (!active) return;
+
+      const userBubble = addMsg("user", "Listening...🎤");
+      abortController = new AbortController();
+
+      try {
+        const res = await fetch("/loop_conversation", {
+          method: "POST",
+          signal: abortController.signal,
+        });
+        const data = await res.json();
+
+        userBubble.textContent = data.user_text || "[No input]";
+        addMsg("bot", data.reply);
+
+        if (data.audio_url) {
+          player.src = `${data.audio_url}?t=${Date.now()}`;
+          player.hidden = false;
+
+          await new Promise((resolve) => {
+            player.onended = resolve;
+            player.onerror = resolve;
+            player.play().catch(resolve);
+          });
+        }
+
+        if (data.should_stop || !active) {
+          stopConversation();
+        } else {
+          setTimeout(() => loop(), 500);
+        }
+      } catch (err) {
+        if (err.name !== "AbortError") {
+          console.error("Loop error:", err);
+          addMsg("bot", `Error: ${err.message}`);
+        }
+        stopConversation();
+      }
+    }
+
+    function addMsg(type, text) {
+      const el = document.createElement("div");
+      el.className = `message ${type}`;
+      el.textContent = text;
+      chat.appendChild(el);
+      chat.scrollTop = chat.scrollHeight;
+      return el;
+    }
+  </script>
+</body>
+</html>

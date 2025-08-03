@@ -1,0 +1,8 @@
+Flask
+whisper
+sounddevice
+numpy
+pyttsx3
+scipy
+python-dotenv
+groq

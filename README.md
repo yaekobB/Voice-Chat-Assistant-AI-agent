@@ -95,6 +95,23 @@ Visit [http://localhost:5000](http://localhost:5000) in your browser.
 5. Loop continues until you say: _stop_, _exit_, or press **Stop Voice**.
 
 ---
+## 📸 Screenshots
+
+Here are a few sample interactions from the voice assistant:
+
+### ✅ Greeting and Listening
+![Greeting](assets/screenshot-chat-1.png)
+
+### ✅ Transcription and Response
+![Response](assets/screenshot-chat-2.png)
+
+### ✅ Ongoing Conversation
+![Ongoing](assets/screenshot-chat-3.png)
+
+### ✅ Conversation End
+![End](assets/screenshot-chat-4.png)
+
+---
 
 ## 🚀 Future Improvements
 

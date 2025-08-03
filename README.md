@@ -58,8 +58,8 @@ voice-chat-assistant-ai-agent/
 ### 1. Clone this repo
 
 ```bash
-git clone https://github.com/your-username/voice-chat-assistant.git
-cd voice-chat-assistant
+git clone https://github.com/yaekobB/Voice-Chat-Assistant-AI-agent.git
+cd Voice-Chat-Assistant-AI-agent
 ```
 
 ### 2. Install dependencies

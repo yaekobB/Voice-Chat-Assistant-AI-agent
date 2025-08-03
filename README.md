@@ -33,18 +33,21 @@ A browser-based conversational voice assistant built with Python and Flask that 
 ## 📁 Project Structure
 
 ```
-📁 voice-chat-assistant-ai-agent
-├── app.py
+voice-chat-assistant-ai-agent/
+├── app.py                     # Main Flask backend: STT, LLM, TTS, and routing
 ├── templates/
-│   └── index.html
+│   └── index.html             # Frontend UI (HTML, CSS, JS) for the voice chat interface
 ├── static/
-│   └── audio/
-├── assets/
+│   └── audio/                 # Directory for generated TTS audio files
+├── assets/                    # Screenshots and UI assets
 │   ├── screenshot-chat-1.png
-│   └── screenshot-chat-2.png
-├── .env
-├── README.md
-└── requirements.txt
+│   ├── screenshot-chat-2.png
+│   ├── screenshot-chat-3.png
+│   └── screenshot-chat-4.png
+├── .env                       # Environment file containing GROQ_API_KEY
+├── requirements.txt           # Python dependencies
+└── README.md                  # Project overview and usage guide
+
 
 ```
 
@@ -110,7 +113,7 @@ This assistant is part of my hands-on learning and academic exploration during m
 
 ## 📄 License
 
-This project is for academic and educational purposes. Feel free to fork and expand it with credit.
+This project is licensed under the MIT License. Free to use, share, and modify with attribution.
 
 ---
 

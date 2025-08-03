@@ -96,12 +96,6 @@ Visit [http://localhost:5000](http://localhost:5000) in your browser.
 
 ---
 
-## 📚 Academic Context
-
-This assistant is part of my hands-on learning and academic exploration during my Master’s degree in Artificial Intelligence and Computer Science. It demonstrates practical integration of speech and language technologies for interactive interfaces.
-
----
-
 ## 🚀 Future Improvements
 
 - [ ] Real-time VAD (voice activity detection)
@@ -116,10 +110,4 @@ This assistant is part of my hands-on learning and academic exploration during m
 This project is licensed under the MIT License. Free to use, share, and modify with attribution.
 
 ---
-
-## 👨‍💻 Author
-
-**Yaekob Beyene**  
-_MSc Artificial Intelligence and Computer Science_  
-🔗 [LinkedIn](#) &nbsp;&nbsp;&nbsp; 📧 [Email](#)
 

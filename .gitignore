@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Environment
+.env
+
+
+# Audio files
+*.wav
+
+# macOS
+.DS_Store
+
+# VS Code / IDE settings
+.vscode/
+.idea/
+
+# Virtual environments
+venv/
+.env/
+env/
+ENV/
+.venv/
+.Python
+
+# Logs
+*.log
+
+# PyInstaller
+dist/
+build/
+*.spec
+
+# Flask cache
+instance/
+*.db
+
+# Temp files
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# System
+Thumbs.db
+ehthumbs.db

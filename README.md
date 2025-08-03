@@ -33,16 +33,19 @@ A browser-based conversational voice assistant built with Python and Flask that 
 ## 📁 Project Structure
 
 ```
-voice-chat-assistant/
-│
-├── app.py                 # Main Flask backend
+📁 voice-chat-assistant-ai-agent
+├── app.py
 ├── templates/
-│   └── index.html         # Frontend HTML interface
+│   └── index.html
 ├── static/
-│   └── audio/             # TTS-generated .wav files
-├── .env                   # Environment variables (not pushed)
-├── requirements.txt       # Python dependencies
-└── README.md              # Project overview
+│   └── audio/
+├── assets/
+│   ├── screenshot-chat-1.png
+│   └── screenshot-chat-2.png
+├── .env
+├── README.md
+└── requirements.txt
+
 ```
 
 ---
@@ -96,7 +99,7 @@ This assistant is part of my hands-on learning and academic exploration during m
 
 ---
 
-## 🔮 Roadmap
+## 🚀 Future Improvements
 
 - [ ] Real-time VAD (voice activity detection)
 - [ ] Voice interrupt using Web Audio API

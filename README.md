@@ -1,3 +1,5 @@
+![Voice Chat Assistant Banner](assets/banner.png)
+
 # Voice-Chat-Assistant-AI-agent
 # 🎙️ Voice Chat Assistant
 

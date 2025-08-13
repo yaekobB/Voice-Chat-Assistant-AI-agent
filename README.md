@@ -99,19 +99,12 @@ Visit [http://localhost:5000](http://localhost:5000) in your browser.
 ---
 ## 📸 Screenshots
 
-Here are a few sample interactions from the voice assistant:
+Browse screenshots in the [📂 assets folder](assets/), or view directly:
 
-### ✅ Greeting and Listening
-![Greeting](assets/screenshot-chat-1.png)
-
-### ✅ Transcription and Response
-![Response](assets/screenshot-chat-2.png)
-
-### ✅ Ongoing Conversation
-![Ongoing](assets/screenshot-chat-3.png)
-
-### ✅ Conversation End
-![End](assets/screenshot-chat-4.png)
+- ✅ [Greeting and Listening](assets/screenshot-chat-1.png)
+- ✅ [Transcription and Response](assets/screenshot-chat-2.png)
+- ✅ [Ongoing Conversation](assets/screenshot-chat-3.png)
+- ✅ [Conversation End](assets/screenshot-chat-4.png)
 
 ---
 
